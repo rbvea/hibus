@@ -1,0 +1,15 @@
+doctype 5
+html
+  head
+    title HiBus: A Real-Time Bus Tracking App
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGg9347CHYHX3ocHv23nUl-DhR2YakYg8&sensor=false&language=en")
+    script(src="https://cdn.firebase.com/v0/firebase.js")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    style
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map { height: 100% }
+  body(onload="initialize()")
+    block content
+    script(src="javascripts/marker.js")
+    script(src="javascripts/firebus.js")
