@@ -10,8 +10,6 @@ var express = require('express')
 
 var app = express();
 
-
-
 // all environments
 app.set('port', 1717);
 app.set('views', __dirname + '/views');
@@ -28,7 +26,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', routes.map);
+// app.get('/map', routes.map);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
