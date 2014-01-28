@@ -4,7 +4,6 @@ var p = require('node-protobuf').Protobuf,
     Firebase = require('firebase'),
     yaml = require('js-yaml'),
     settings = yaml.safeLoad(fs.readFileSync('config/default.yml', 'utf8')),
-    gtfs = require('gtfs'),
     pb = new p(fs.readFileSync('doc/gtfs-realtime.desc')),
     location_url = 'http://webapps.thebus.org/transitdata/production/vehloc/',
     updates_url = 'http://webapps.thebus.org/transitdata/production/tripupdates/',
@@ -25,7 +24,7 @@ function getBusses() {
       for(i in busses) {
         var bus = busses[i].vehicle;
         var firebus = firebase.child(bus.vehicle.id);
-        firebus.set({lat: bus.position.latitude, lng: bus.position.longitude});
+        firebus.update({lat: bus.position.latitude, lng: bus.position.longitude});
       }
     };
   });

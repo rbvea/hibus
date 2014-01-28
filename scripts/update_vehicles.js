@@ -7,7 +7,7 @@ var request = require('request'),
     xml = require('xml2js'),
     async = require('async'),
     fs = require('fs'),
-    settings = yaml.safeLoad(fs.readFileSync('config/default.yml', 'utf8')),
+    settings = yaml.safeLoad(fs.readFileSync('/home/rbvea/hibus/config/default.yml', 'utf8')),
     Firebase = require('firebase'),
     _ = require('lodash'),
     api = 'http://api.thebus.org/vehicle';
@@ -34,8 +34,14 @@ request({
           bus_thing.once('value', function(data) {
             var trip = bus.trip[0];
             if(_.isObject(data.val()) && trip != 'null_trip') {
-              bus_thing.child('trip').set(trip);
-              console.log('set id: ' + bus_thing.name() + ' to ' + bus.trip);
+              bus_thing.child('trip').set(trip, function(err) {
+                if(err) {
+                  console.log('error!');
+                  console.log(err);
+                } else {
+		  console.log('set id: ' + bus_thing.name() + ' to ' + trip); 
+		}
+              });
             } 
           });
           cb();

@@ -23,7 +23,10 @@ function newBus(bus, firebaseId) {
         var marker = new google.maps.Marker({icon: 'http://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=bus|bb|'+routeDisplay+'|FFF|000', position: busLatLng, map: map });
         buses[firebaseId] = marker;
       });
-    }
+    } //else {
+    //  var marker = new google.maps.Marker({icon: 'http://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=bus|bb|'+firebaseId+'|DCDA33|000', position: busLatLng, map: map });
+    //  buses[firebaseId] = marker;
+    //}
 }
 
 vehicles.once("value", function(s) {
